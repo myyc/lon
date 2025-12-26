@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/dev/myyc/lon">
+    <file compressed="true" preprocess="xml-stripblanks">ui/window.ui</file>
+    <file compressed="true">colors/tcx.json</file>
+    <file compressed="true">colors/solid_coated.json</file>
+  </gresource>
+</gresources>

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=lon
+Comment=A Pantone color browser
+Exec=lon
+Icon=dev.myyc.lon
+Terminal=false
+Type=Application
+Categories=Graphics;Utility;
+Keywords=color;pantone;palette;design;
+StartupNotify=true

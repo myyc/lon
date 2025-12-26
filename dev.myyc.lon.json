@@ -1,0 +1,47 @@
+{
+    "app-id": "dev.myyc.lon",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "49",
+    "sdk": "org.gnome.Sdk",
+    "sdk-extensions": [
+        "org.freedesktop.Sdk.Extension.rust-stable"
+    ],
+    "command": "lon",
+    "finish-args": [
+        "--socket=wayland"
+    ],
+    "build-options": {
+        "append-path": "/usr/lib/sdk/rust-stable/bin",
+        "build-args": ["--share=network"],
+        "env": {
+            "CARGO_HOME": "/run/build/lon/cargo"
+        }
+    },
+    "modules": [
+        {
+            "name": "lon",
+            "buildsystem": "simple",
+            "build-commands": [
+                "cargo fetch --manifest-path Cargo.toml --verbose",
+                "cargo build --release --verbose",
+                "install -Dm755 target/release/lon /app/bin/lon",
+                "install -Dm644 data/dev.myyc.lon.metainfo.xml /app/share/metainfo/dev.myyc.lon.metainfo.xml",
+                "install -Dm644 data/dev.myyc.lon.desktop /app/share/applications/dev.myyc.lon.desktop",
+                "install -Dm644 data/icons/hicolor/16x16/apps/dev.myyc.lon.png /app/share/icons/hicolor/16x16/apps/dev.myyc.lon.png",
+                "install -Dm644 data/icons/hicolor/24x24/apps/dev.myyc.lon.png /app/share/icons/hicolor/24x24/apps/dev.myyc.lon.png",
+                "install -Dm644 data/icons/hicolor/32x32/apps/dev.myyc.lon.png /app/share/icons/hicolor/32x32/apps/dev.myyc.lon.png",
+                "install -Dm644 data/icons/hicolor/48x48/apps/dev.myyc.lon.png /app/share/icons/hicolor/48x48/apps/dev.myyc.lon.png",
+                "install -Dm644 data/icons/hicolor/64x64/apps/dev.myyc.lon.png /app/share/icons/hicolor/64x64/apps/dev.myyc.lon.png",
+                "install -Dm644 data/icons/hicolor/128x128/apps/dev.myyc.lon.png /app/share/icons/hicolor/128x128/apps/dev.myyc.lon.png",
+                "install -Dm644 data/icons/hicolor/256x256/apps/dev.myyc.lon.png /app/share/icons/hicolor/256x256/apps/dev.myyc.lon.png",
+                "install -Dm644 data/icons/hicolor/512x512/apps/dev.myyc.lon.png /app/share/icons/hicolor/512x512/apps/dev.myyc.lon.png"
+            ],
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "."
+                }
+            ]
+        }
+    ]
+}
