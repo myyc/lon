@@ -240,13 +240,14 @@ impl LonWindow {
             }
         ));
 
-        // Scroll to middle after GridView is realized
-        grid_view.connect_realize(move |grid| {
+        // Scroll to middle after GridView is mapped
+        grid_view.connect_map(move |grid| {
             let grid = grid.clone();
             let selection = selection.clone();
-            glib::idle_add_local_once(move || {
+            glib::timeout_add_local_once(std::time::Duration::from_millis(100), move || {
                 selection.set_selected(middle_pos);
                 grid.scroll_to(middle_pos, gtk::ListScrollFlags::FOCUS, None);
+                grid.queue_draw();
             });
         });
 
