@@ -163,11 +163,17 @@ impl LonWindow {
         let close_btn = gtk::Button::from_icon_name("window-close-symbolic");
         close_btn.add_css_class("close-btn");
         close_btn.add_css_class("circular");
-        close_btn.connect_clicked(|btn| {
-            if let Some(window) = btn.root().and_then(|r| r.downcast::<gtk::Window>().ok()) {
-                window.close();
+        close_btn.connect_clicked(glib::clone!(
+            #[weak]
+            bottom_sheet,
+            move |btn| {
+                if bottom_sheet.is_open() {
+                    bottom_sheet.set_open(false);
+                } else if let Some(window) = btn.root().and_then(|r| r.downcast::<gtk::Window>().ok()) {
+                    window.close();
+                }
             }
-        });
+        ));
         btn_box.append(&close_btn);
 
         overlay.add_overlay(&btn_box);
